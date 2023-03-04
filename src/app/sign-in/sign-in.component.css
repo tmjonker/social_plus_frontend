@@ -1,0 +1,29 @@
+form {
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.outer {
+    background-image: url("../../assets/images/logo.png");
+    background-repeat: no-repeat;
+    background-position: 20%;
+    height:600px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 800px) {
+    .outer {
+        background-size: 100%;
+    }
+}

@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'social-media-frontend';
+
+  constructor() {
+    
+  }
+  user = localStorage.getItem("sm-user");
+
+  userIsNull() {
+    return this.user === null;
+  }
 }
