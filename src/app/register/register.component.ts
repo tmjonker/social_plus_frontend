@@ -78,7 +78,7 @@ export class RegisterComponent {
   }
 
   handleSubmit() {
-    if (this.testPasswords() && this.testEmail()) {
+    if (this.testPasswords() && this.testEmail() && this.testUsername()) {
       //send data to backend.
     } else {
       //display modal indicating errors.
