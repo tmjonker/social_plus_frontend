@@ -1,3 +1,5 @@
+![screenshot of program](https://github.com/tmjonker/burger_bonanza-frontend/blob/master/images/bb1.png)
+
 # SocialMediaFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.1.

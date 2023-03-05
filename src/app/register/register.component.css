@@ -27,10 +27,13 @@ h1 {
     -webkit-text-stroke: 3px black;
     color: white;
     margin-top: 90px;
+  }
+
+.animate {
     transform: translateX(-200%);
     margin-left: 50%;
     animation: slide-in-anim 1.5s ease-out forwards;
-  }
+}
 
   @keyframes slide-in-anim {
 	20% {
