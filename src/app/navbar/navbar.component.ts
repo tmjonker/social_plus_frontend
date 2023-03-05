@@ -1,4 +1,4 @@
-import { Pages } from './../pages';
+import { Pages } from './../interfaces/pages';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({

@@ -15,8 +15,10 @@
         <input
           type="email"
           id="email"
+          [(ngModel)]="email"
+          name="email"
           class="bg-gray-100 border-solid border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:outline-none focus:border-blue-500 block w-full p-2.5"
-          placeholder="name@flowbite.com"
+          placeholder="name@email.com"
           required
         />
       </div>
@@ -27,8 +29,10 @@
           >Desired Username</label
         >
         <input
-          type="username"
+          type="text"
           id="username"
+          [(ngModel)]="username"
+          name="username"
           class="bg-gray-100 border-solid border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:outline-none focus:border-blue-500 block w-full p-2.5"
           required
         />
@@ -43,6 +47,8 @@
           <input
             type="text"
             id="firstName"
+            [(ngModel)]="firstName"
+            name="first"
             class="bg-gray-100 border border-solid border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 focus:outline-none"
             required
           />
@@ -54,8 +60,10 @@
             >Last Name</label
           >
           <input
-            type="test"
+            type="text"
             id="lastName"
+            [(ngModel)]="lastName"
+            name="last"
             class="bg-gray-100 border border-solid border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 focus:outline-none"
             required
           />
@@ -71,22 +79,26 @@
           <input
             type="password"
             id="password1"
+            [(ngModel)]="password1"
+            name="password1"
             class="bg-gray-100 border border-solid border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 focus:outline-none"
             required
           />
         </div>
         <div class="relative z-0 w-full mb-6 group">
-        <label
-          for="password2"
-          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >Verify password</label
-        >
-        <input
-          type="password"
-          id="password2"
-          class="bg-gray-100 border border-solid border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 focus:outline-none"
-          required
-        />
+          <label
+            for="password2"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Verify password</label
+          >
+          <input
+            type="password"
+            id="password2"
+            [(ngModel)]="password2"
+            name="password2"
+            class="bg-gray-100 border border-solid border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 focus:outline-none"
+            required
+          />
         </div>
       </div>
       <div class="flex items-start mb-6">
@@ -107,10 +119,89 @@
       </div>
       <button
         type="submit"
+        (click)="handleSubmit()"
         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
         Submit
       </button>
+      <div
+        class="flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+        role="alert"
+        *ngIf="!testEmail()"
+      >
+        <svg
+          aria-hidden="true"
+          class="flex-shrink-0 inline w-5 h-5 mr-3"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+          <span class="font-medium">Alert!</span> Please make sure your email
+          address is valid, and then try again.
+        </div>
+      </div>
+      <div
+        class="flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+        role="alert"
+        *ngIf="!testUsername()"
+      >
+        <svg
+          aria-hidden="true"
+          class="flex-shrink-0 inline w-5 h-5 mr-3"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+          <span class="font-medium">Alert!</span> Invalid username format, please try again!
+        </div>
+      </div>
+      <div
+        class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+        *ngIf="!testPasswords()"
+      >
+        <svg
+          aria-hidden="true"
+          class="flex-shrink-0 inline w-5 h-5 mr-3"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+        <span class="sr-only">Danger</span>
+        <div>
+          <span class="font-medium"
+            >Ensure that these password requirements are met:</span
+          >
+          <ul class="mt-1.5 ml-4 list-disc list-inside">
+            <li [ngClass]="{strike: testLength()}">At least 8 characters</li>
+            <li [ngClass]="{strike: testLower()}">At least one lowercase character</li>
+            <li [ngClass]="{strike: testUpper()}">At least one uppercase character</li>
+            <li [ngClass]="{strike: testMatch()}">Passwords Match</li>
+          </ul>
+        </div>
+      </div>
     </form>
   </div>
 </div>
