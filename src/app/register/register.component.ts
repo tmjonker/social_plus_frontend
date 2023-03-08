@@ -1,3 +1,5 @@
+import { User } from './../interfaces/user';
+import { RegisterServiceService } from './../services/register-service.service';
 import { Component, OnInit } from '@angular/core';
 import { InputValidatorService } from '../services/input-validator.service';
 
@@ -8,6 +10,9 @@ import { InputValidatorService } from '../services/input-validator.service';
 })
 export class RegisterComponent {
   validatorService: InputValidatorService;
+  registerService: RegisterServiceService;
+
+  user!: User;
 
   email!: string;
   username!: string;
@@ -18,6 +23,7 @@ export class RegisterComponent {
 
   constructor() {
     this.validatorService = new InputValidatorService();
+    this.registerService = new RegisterServiceService();
   }
 
   testEmail() {
@@ -78,9 +84,34 @@ export class RegisterComponent {
     return this.validatorService.validateUsername(this.username);
   }
 
+  testDataComplete(): boolean {
+    if (
+      this.firstName !== '' &&
+      this.firstName !== undefined &&
+      this.lastName !== '' &&
+      this.lastName !== undefined
+    ) {
+      return this.testPasswords() && this.testEmail() && this.testUsername();
+    }
+
+    return false;
+  }
+
   handleSubmit() {
+
+    this.user = {
+      username: this.username,
+      email: this.email,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      password1: this.password1,
+      password2: this.password2,
+    };
+
+    console.log('In handleSubmit');
+
     if (this.testPasswords() && this.testEmail() && this.testUsername()) {
-      //send data to backend.
+      this.registerService.postRegistration(this.user);
     } else {
       //display modal indicating errors.
     }
