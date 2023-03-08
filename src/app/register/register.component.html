@@ -168,13 +168,13 @@
         </svg>
         <span class="sr-only">Info</span>
         <div>
-          <span class="font-medium">Alert!</span> Invalid username format, please try again!
+          <span class="font-medium">Alert!</span> Invalid username format,
+          please try again!
         </div>
       </div>
       <div
-        class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+        class="flex p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
         role="alert"
-        *ngIf="!testPasswords()"
       >
         <svg
           aria-hidden="true"
@@ -189,16 +189,20 @@
             clip-rule="evenodd"
           ></path>
         </svg>
-        <span class="sr-only">Danger</span>
+        <span class="sr-only">Info</span>
         <div>
           <span class="font-medium"
             >Ensure that these password requirements are met:</span
           >
           <ul class="mt-1.5 ml-4 list-disc list-inside">
-            <li [ngClass]="{strike: testLength()}">At least 8 characters</li>
-            <li [ngClass]="{strike: testLower()}">At least one lowercase character</li>
-            <li [ngClass]="{strike: testUpper()}">At least one uppercase character</li>
-            <li [ngClass]="{strike: testMatch()}">Passwords Match</li>
+            <li [ngClass]="{ strike: testLength() }">At least 8 characters</li>
+            <li [ngClass]="{ strike: testLower() }">
+              At least one lowercase character
+            </li>
+            <li [ngClass]="{ strike: testUpper() }">
+              At least one uppercase character
+            </li>
+            <li [ngClass]="{ strike: testMatch() }">Passwords Match</li>
           </ul>
         </div>
       </div>

@@ -31,7 +31,8 @@ export class RegisterComponent {
     if (this.password1 !== null && this.password2 !== null) {
       return (
         this.validatorService.validateTotalPassword(this.password1) &&
-        this.validatorService.validateTotalPassword(this.password2)
+        this.validatorService.validateTotalPassword(this.password2) &&
+        this.testMatch()
       );
     }
 
