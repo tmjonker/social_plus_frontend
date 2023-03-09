@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MemberHomeComponent } from './member-home/member-home.component';
+import { StickyFooterComponent } from './sticky-footer/sticky-footer.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MemberHomeComponent } from './member-home/member-home.component';
     SignInComponent,
     AboutComponent,
     RegisterComponent,
-    MemberHomeComponent
+    MemberHomeComponent,
+    StickyFooterComponent
   ],
   imports: [
     BrowserModule,
