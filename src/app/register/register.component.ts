@@ -1,5 +1,5 @@
 import { User } from './../interfaces/user';
-import { RegisterServiceService } from './../services/register-service.service';
+import { RegisterService } from '../services/register.service';
 import { Component, OnInit } from '@angular/core';
 import { InputValidatorService } from '../services/input-validator.service';
 
@@ -10,7 +10,7 @@ import { InputValidatorService } from '../services/input-validator.service';
 })
 export class RegisterComponent {
   validatorService: InputValidatorService;
-  registerService: RegisterServiceService;
+  registerService: RegisterService;
 
   user!: User;
 
@@ -23,7 +23,7 @@ export class RegisterComponent {
 
   constructor() {
     this.validatorService = new InputValidatorService();
-    this.registerService = new RegisterServiceService();
+    this.registerService = new RegisterService();
   }
 
   testEmail() {

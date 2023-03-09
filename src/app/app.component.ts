@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor() {
-    
-  }
-  user = localStorage.getItem("sm-user");
+  user: any;
 
-  userIsNull() {
-    return this.user === null;
+  constructor() {
+    this.user = localStorage.getItem("user");
+  }
+
+  userIsNull():boolean {
+
+    this.user = localStorage.getItem("user");
+    console.log(this.user === undefined || this.user === null);
+    return this.user === undefined || this.user === null;
   }
 }

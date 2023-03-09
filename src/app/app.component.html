@@ -1,12 +1,14 @@
 
-<ng-container *ngIf="userIsNull() else signedIn">
-<app-navbar ></app-navbar>
+<div *ngIf="userIsNull() else signedIn">
+<app-navbar></app-navbar>
+<router-outlet></router-outlet>
 <app-footer></app-footer>
-</ng-container>
+</div>
 
 <ng-template #signedIn>
 <app-navbar-signed-in></app-navbar-signed-in>
+<router-outlet></router-outlet>
 <app-footer></app-footer>
 </ng-template>
 
-<router-outlet></router-outlet>
+

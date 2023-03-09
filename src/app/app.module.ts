@@ -12,6 +12,7 @@ import { AboutComponent } from './about/about.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MemberHomeComponent } from './member-home/member-home.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CommonModule } from '@angular/common';
     FooterComponent,
     SignInComponent,
     AboutComponent,
-    RegisterComponent
+    RegisterComponent,
+    MemberHomeComponent
   ],
   imports: [
     BrowserModule,
