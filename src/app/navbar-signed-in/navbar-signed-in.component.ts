@@ -1,5 +1,7 @@
+import { Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Pages } from '../interfaces/pages';
+import { Dropdown } from 'flowbite';
 
 @Component({
   selector: 'app-navbar-signed-in',
@@ -10,7 +12,7 @@ export class NavbarSignedInComponent implements OnDestroy, OnInit {
 
   pages!: Pages;
 
-  constructor() {
+  constructor(private router: Router) {
     this.pages = JSON.parse(sessionStorage.getItem('pages')!);
 
     console.log(this.pages);
@@ -57,5 +59,11 @@ export class NavbarSignedInComponent implements OnDestroy, OnInit {
       register: false,
       about: false,
     };
+  }
+
+  handleSignOut() {
+    localStorage.clear();
+
+    this.router.navigateByUrl("/sign-in");
   }
 }

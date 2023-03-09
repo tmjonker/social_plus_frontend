@@ -4,11 +4,15 @@
   <div
     class="container px-20 flex flex-wrap items-center justify-between mx-auto main"
   >
-    <a href="https://flowbite.com/" class="flex items-center">
+    <a
+      routerLink="/sign-in"
+      routerLinkActive="active"
+      class="flex items-center"
+    >
       <img
         src="../../assets/images/logo.png"
         class="h-6 mr-3 sm:h-8"
-        alt="Flowbite Logo"
+        alt="Social+ Logo"
       />
       <span
         class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
@@ -45,9 +49,12 @@
           <a
             routerLink="/about"
             routerLinkActive="active"
+            class="block py-2 pl-3 pr-4 md:p-0 rounded"
             [ngClass]="{
-              'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white': pages.about,
-              'block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent': !pages.about
+              'text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 dark:text-white':
+                pages.about,
+              'text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent':
+                !pages.about
             }"
             (click)="toggleAbout()"
             >About</a
@@ -55,11 +62,14 @@
         </li>
         <li>
           <a
-          routerLink="/register"
-          routerLinkActive="active"
+            routerLink="/register"
+            routerLinkActive="active"
+            class="block py-2 pl-3 pr-4 md:p-0 rounded"
             [ngClass]="{
-              'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white': pages.register,
-              'block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent': !pages.register
+              'text-white bg-blue-700 md:bg-transparent md:text-blue-700 dark:text-white':
+                pages.register,
+              'text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent':
+                !pages.register
             }"
             (click)="toggleRegister()"
             >Register</a
@@ -67,10 +77,14 @@
         </li>
         <li>
           <a
-            href="#"
+            routerLink="/sign-in"
+            routerLinkActive="active"
+            class="block py-2 pl-3 pr-4 md:p-0 rounded"
             [ngClass]="{
-              'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white': pages.signIn,
-              'block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent': !pages.signIn
+              'text-white bg-blue-700 md:bg-transparent md:text-blue-700 dark:text-white':
+                pages.signIn,
+              'text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent':
+                !pages.signIn
             }"
             (click)="toggleSignIn()"
             >Sign In</a

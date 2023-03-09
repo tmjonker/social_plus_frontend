@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,8 +10,13 @@ export class AppComponent {
 
   user: any;
 
-  constructor() {
+  constructor(private router: Router) {
     this.user = localStorage.getItem("user");
+    if (!this.userIsNull()) {
+      this.router.navigateByUrl("/member-home");
+    } else {
+      this.router.navigateByUrl("/sign-in");
+    }
   }
 
   userIsNull():boolean {

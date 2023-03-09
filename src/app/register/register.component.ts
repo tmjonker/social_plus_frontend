@@ -9,8 +9,6 @@ import { InputValidatorService } from '../services/input-validator.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  validatorService: InputValidatorService;
-  registerService: RegisterService;
 
   user!: User;
 
@@ -21,9 +19,8 @@ export class RegisterComponent {
   password1!: string;
   password2!: string;
 
-  constructor() {
-    this.validatorService = new InputValidatorService();
-    this.registerService = new RegisterService();
+  constructor(private validatorService: InputValidatorService, private registerService: RegisterService) {
+    
   }
 
   testEmail() {

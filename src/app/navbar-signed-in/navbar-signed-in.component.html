@@ -4,15 +4,15 @@
   <div
     class="container px-20 flex flex-wrap items-center justify-between mx-auto"
   >
-    <a href="https://flowbite.com/" class="flex items-center">
+    <a routerLink="/member-home" routerLinkActive="active" class="flex items-center">
       <img
-        src="https://flowbite.com/docs/images/logo.svg"
-        class="h-6 mr-3 sm:h-9"
-        alt="Flowbite Logo"
+      src="../../assets/images/logo.png"
+      class="h-6 mr-3 sm:h-8"
+      alt="Social+ Logo"
       />
       <span
         class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-        >Flowbite</span
+        >Social+</span
       >
     </a>
     <div class="flex items-center md:order-2">
@@ -69,7 +69,8 @@
           </li>
           <li>
             <a
-              href="#"
+              href=""
+              (click)="handleSignOut()"
               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
               >Sign out</a
             >
