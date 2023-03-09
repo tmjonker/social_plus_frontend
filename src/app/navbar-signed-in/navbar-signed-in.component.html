@@ -61,13 +61,13 @@
           >
             <div class="px-4 py-3" role="none">
               <p class="text-sm text-gray-900 dark:text-white" role="none">
-                Neil Sims
+                {{ user.firstName + " " + user.lastName }}
               </p>
               <p
                 class="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
                 role="none"
               >
-                neil.sims@flowbite.com
+                {{ user.email }}
               </p>
             </div>
             <ul class="py-1" role="none">
@@ -76,23 +76,7 @@
                   href="#"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
-                  >Dashboard</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem"
-                  >Settings</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem"
-                  >Earnings</a
+                  >Personal Information</a
                 >
               </li>
               <li>
@@ -125,39 +109,21 @@
           class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
         >
           <svg
-            aria-hidden="true"
             class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
             fill="currentColor"
-            viewBox="0 0 20 20"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-          </svg>
-          <span class="ml-3">Dashboard</span>
-        </a>
-      </li>
-      <li>
-        <a
-          href="#"
-          class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-        >
-          <svg
             aria-hidden="true"
-            class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
             ></path>
           </svg>
-          <span class="flex-1 ml-3 whitespace-nowrap">Kanban</span>
-          <span
-            class="inline-flex items-center justify-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300"
-            >Pro</span
-          >
+          <span class="ml-3">Home</span>
         </a>
       </li>
       <li>
@@ -213,61 +179,45 @@
           class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
         >
           <svg
-            aria-hidden="true"
-            class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
             fill="currentColor"
-            viewBox="0 0 20 20"
+            class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
             <path
-              fill-rule="evenodd"
-              d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
-              clip-rule="evenodd"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"
             ></path>
           </svg>
-          <span class="flex-1 ml-3 whitespace-nowrap">Products</span>
+          <span class="flex-1 ml-3 whitespace-nowrap">Groups</span>
         </a>
       </li>
       <li>
         <a
-          href="#"
+          href=""
+          (click)="handleSignOut()"
           class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
         >
           <svg
-            aria-hidden="true"
-            class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
             fill="currentColor"
-            viewBox="0 0 20 20"
+            class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
             <path
-              fill-rule="evenodd"
-              d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
-              clip-rule="evenodd"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
             ></path>
           </svg>
-          <span class="flex-1 ml-3 whitespace-nowrap">Sign In</span>
-        </a>
-      </li>
-      <li>
-        <a
-          href="#"
-          class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-        >
-          <svg
-            aria-hidden="true"
-            class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          <span class="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
+          <span class="flex-1 ml-3 whitespace-nowrap">Sign Out</span>
         </a>
       </li>
     </ul>

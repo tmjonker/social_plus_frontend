@@ -11,9 +11,12 @@ import { Dropdown } from 'flowbite';
 export class NavbarSignedInComponent implements OnDestroy, OnInit {
 
   pages!: Pages;
+  user!: any;
 
   constructor(private router: Router) {
     this.pages = JSON.parse(sessionStorage.getItem('pages')!);
+
+    this.user = JSON.parse(localStorage.getItem("user")!);
 
     console.log(this.pages);
     if (this.pages === null) {
