@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MemberHomeComponent } from './member-home/member-home.component';
 import { StickyFooterComponent } from './sticky-footer/sticky-footer.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { StickyFooterComponent } from './sticky-footer/sticky-footer.component';
     AboutComponent,
     RegisterComponent,
     MemberHomeComponent,
-    StickyFooterComponent
+    StickyFooterComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
