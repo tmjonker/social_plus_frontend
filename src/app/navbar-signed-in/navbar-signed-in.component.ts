@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { Pages } from '../interfaces/pages';
 import { Dropdown } from 'flowbite';
 
@@ -16,8 +16,6 @@ export class NavbarSignedInComponent implements OnDestroy, OnInit {
   constructor(private router: Router) {
     this.pages = JSON.parse(sessionStorage.getItem('pages')!);
 
-    this.user = JSON.parse(localStorage.getItem("user")!);
-
     console.log(this.pages);
     if (this.pages === null) {
       this.pages = {
@@ -33,9 +31,11 @@ export class NavbarSignedInComponent implements OnDestroy, OnInit {
       };
     }
   }
+
   ngOnInit(): void {
     window.onbeforeunload = () => this.ngOnDestroy();
   }
+
   ngOnDestroy(): void {
     sessionStorage.setItem('pages', JSON.stringify(this.pages));
   }
@@ -62,6 +62,15 @@ export class NavbarSignedInComponent implements OnDestroy, OnInit {
       register: false,
       about: false,
     };
+  }
+
+  loadUser(): boolean {
+    this.user = JSON.parse(localStorage.getItem("user")!);
+
+    if(this.user !== null)
+      return true;
+
+    return false;
   }
 
   handleSignOut() {

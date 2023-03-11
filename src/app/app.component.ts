@@ -22,7 +22,7 @@ export class AppComponent {
   userIsNull():boolean {
 
     this.user = localStorage.getItem("user");
-    console.log(this.user === undefined || this.user === null);
+    
     return this.user === undefined || this.user === null;
   }
 }
