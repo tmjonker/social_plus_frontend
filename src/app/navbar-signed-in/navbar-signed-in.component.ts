@@ -34,6 +34,9 @@ export class NavbarSignedInComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     window.onbeforeunload = () => this.ngOnDestroy();
+
+    document.getElementById("pi-link")!.onclick = (e) => e.preventDefault();
+    document.getElementById("pw-link")!.onclick = (e) => e.preventDefault();
   }
 
   ngOnDestroy(): void {
@@ -77,5 +80,9 @@ export class NavbarSignedInComponent implements OnDestroy, OnInit {
     localStorage.clear();
 
     this.router.navigateByUrl("/sign-in");
+  }
+
+  handleUpdateSubmit() {
+
   }
 }
