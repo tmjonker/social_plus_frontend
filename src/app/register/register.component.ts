@@ -1,15 +1,23 @@
+import { Username } from './../interfaces/username';
+import { Email } from './../interfaces/email';
 import { User } from './../interfaces/user';
 import { RegisterService } from '../services/register.service';
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterContentChecked,
+  Component,
+  OnInit,
+  AfterViewChecked,
+} from '@angular/core';
 import { InputValidatorService } from '../services/input-validator.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent {
-
+export class RegisterComponent implements AfterViewChecked {
   user!: User;
 
   email!: string;
@@ -19,8 +27,26 @@ export class RegisterComponent {
   password1!: string;
   password2!: string;
 
-  constructor(private validatorService: InputValidatorService, private registerService: RegisterService) {
-    
+  emailObject!: Email;
+  usernameObject!: Username;
+
+  emailExists: boolean = false;
+  usernameExists: boolean = false;
+
+  constructor(
+    private validatorService: InputValidatorService,
+    private registerService: RegisterService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+  ngAfterViewChecked(): void {
+    this.emailObject = {
+      email: this.email.trim().toLowerCase()
+    }
+
+    this.usernameObject = {
+      username: this.username.trim().toLowerCase()
+    }
   }
 
   testEmail() {
@@ -94,23 +120,39 @@ export class RegisterComponent {
     return false;
   }
 
-  handleSubmit() {
-
+  async handleSubmit() {
     this.user = {
-      username: this.username,
-      email: this.email,
-      firstName: this.firstName,
-      lastName: this.lastName,
+      username: this.username.trim().toLowerCase(),
+      email: this.email.trim().toLowerCase(),
+      firstName: this.firstName.trim().toLowerCase(),
+      lastName: this.lastName.trim().toLowerCase(),
       password1: this.password1,
-      password2: this.password2,
+      password2: this.password2
     };
 
-    console.log('In handleSubmit');
+    
 
     if (this.testPasswords() && this.testEmail() && this.testUsername()) {
+
+      await this.registerService.postEmailCheckExists(this.emailObject).then(boo => {
+        console.log(boo);
+        this.emailExists = boo;
+      });
+
+      await this.registerService.postUsernameCheckExists(this.usernameObject).then(boo => {
+        console.log(boo);
+        this.usernameExists = boo;
+      });
+    }
+
+    if (!this.emailExists && !this.usernameExists) {
       this.registerService.postRegistration(this.user);
-    } else {
-      //display modal indicating errors.
+      this.email = '';
+      this.username = '';
+      this.firstName = '';
+      this.lastName = '';
+      this.password1 = '';
+      this.password2 = '';
     }
   }
 }

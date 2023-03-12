@@ -28,7 +28,7 @@ export class SignInComponent implements OnInit {
 
   handleSubmit() {
     this.credentials = {
-      email: this.email,
+      email: this.email.trim().toLowerCase(),
       password: this.password,
     };
 
