@@ -135,12 +135,10 @@ export class RegisterComponent implements AfterViewChecked {
     if (this.testPasswords() && this.testEmail() && this.testUsername()) {
 
       await this.registerService.postEmailCheckExists(this.emailObject).then(boo => {
-        console.log(boo);
         this.emailExists = boo;
       });
 
       await this.registerService.postUsernameCheckExists(this.usernameObject).then(boo => {
-        console.log(boo);
         this.usernameExists = boo;
       });
     }

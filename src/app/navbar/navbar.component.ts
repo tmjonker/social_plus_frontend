@@ -12,7 +12,6 @@ export class NavbarComponent implements OnDestroy, OnInit {
   constructor() {
     this.pages = JSON.parse(sessionStorage.getItem('pages')!);
 
-    console.log(this.pages);
     if (this.pages === null) {
       this.pages = {
         signIn: true,

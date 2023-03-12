@@ -311,10 +311,10 @@
             <input
               type="email"
               name="email"
-              id="email"
+              id="si-email"
               class="bg-gray-100 border-solid border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:outline-none focus:border-blue-500 block w-full p-2.5"
               placeholder="name@company.com"
-              [defaultValue]="user.email"
+              [defaultValue]="user !== null ? user.email : null"
               required
             />
           </div>
@@ -329,7 +329,7 @@
               name="username"
               id="username"
               class="bg-gray-100 border-solid border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:outline-none focus:border-blue-500 block w-full p-2.5"
-              [defaultValue]="user.username"
+              [defaultValue]="user !== null ? user.username : null"
               required
             />
           </div>
@@ -344,7 +344,7 @@
               name="first-name"
               id="first-name"
               class="bg-gray-100 border-solid border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:outline-none focus:border-blue-500 block w-full p-2.5"
-              [defaultValue]="user.firstName"
+              [defaultValue]="user !== null ? user.firstName : null"
               required
             />
           </div>
@@ -359,7 +359,7 @@
               name="last-name"
               id="last-name"
               class="bg-gray-100 border-solid border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:outline-none focus:border-blue-500 block w-full p-2.5"
-              [defaultValue]="user.lastName"
+              [defaultValue]="user !== null ? user.lastName : null"
               required
             />
           </div>

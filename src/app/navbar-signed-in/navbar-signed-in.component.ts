@@ -16,7 +16,6 @@ export class NavbarSignedInComponent implements OnDestroy, OnInit {
   constructor(private router: Router) {
     this.pages = JSON.parse(sessionStorage.getItem('pages')!);
 
-    console.log(this.pages);
     if (this.pages === null) {
       this.pages = {
         signIn: true,
