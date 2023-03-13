@@ -40,12 +40,16 @@ export class RegisterComponent implements AfterViewChecked {
     private route: ActivatedRoute
   ) {}
   ngAfterViewChecked(): void {
-    this.emailObject = {
-      email: this.email.trim().toLowerCase()
+    if (this.email !== undefined && this.email !== null) {
+      this.emailObject = {
+        email: this.email.trim().toLowerCase(),
+      };
     }
 
-    this.usernameObject = {
-      username: this.username.trim().toLowerCase()
+    if (this.username !== undefined && this.email !== null) {
+      this.usernameObject = {
+        username: this.username.trim().toLowerCase(),
+      };
     }
   }
 
@@ -127,20 +131,21 @@ export class RegisterComponent implements AfterViewChecked {
       firstName: this.firstName.trim().toLowerCase(),
       lastName: this.lastName.trim().toLowerCase(),
       password1: this.password1,
-      password2: this.password2
+      password2: this.password2,
     };
 
-    
-
     if (this.testPasswords() && this.testEmail() && this.testUsername()) {
+      await this.registerService
+        .postEmailCheckExists(this.emailObject)
+        .then((boo) => {
+          this.emailExists = boo;
+        });
 
-      await this.registerService.postEmailCheckExists(this.emailObject).then(boo => {
-        this.emailExists = boo;
-      });
-
-      await this.registerService.postUsernameCheckExists(this.usernameObject).then(boo => {
-        this.usernameExists = boo;
-      });
+      await this.registerService
+        .postUsernameCheckExists(this.usernameObject)
+        .then((boo) => {
+          this.usernameExists = boo;
+        });
     }
 
     if (!this.emailExists && !this.usernameExists) {
