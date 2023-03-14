@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class RegisterService {
   constructor(private router: Router) {
     axios.defaults.headers.post['Content-Type'] = 'application/json';
-    axios.defaults.headers.common['Authorization'] = environment.apiKey;
+    axios.defaults.headers.common['SocialPlus'] = environment.apiKey;
   }
 
   postRegistration(user: User) {
