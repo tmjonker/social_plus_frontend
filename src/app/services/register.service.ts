@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../interfaces/user';
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +12,12 @@ import axios from 'axios';
 export class RegisterService {
   constructor(private router: Router) {
     axios.defaults.headers.post['Content-Type'] = 'application/json';
+    axios.defaults.headers.common['Authorization'] = environment.apiKey;
   }
 
   postRegistration(user: User) {
     axios
-      .post('http://localhost:8080/register', JSON.stringify(user))
+      .post('http://localhost:8080/api/register', JSON.stringify(user))
       .then((response) => {
         console.log(response);
         localStorage.setItem('token', JSON.stringify(response.data.token));
@@ -29,7 +31,7 @@ export class RegisterService {
 
   async postEmailCheckExists(email: Email): Promise<boolean> {
     return await axios
-      .post('http://localhost:8080/email', JSON.stringify(email))
+      .post('http://localhost:8080/api/email', JSON.stringify(email))
       .then((response) => {
         return Promise.resolve(false);
       })
@@ -40,7 +42,7 @@ export class RegisterService {
 
   async postUsernameCheckExists(username: Username): Promise<boolean> {
     return await axios
-      .post('http://localhost:8080/username', JSON.stringify(username))
+      .post('http://localhost:8080/api/username', JSON.stringify(username))
       .then((response) => {
         return Promise.resolve(false);
       })
