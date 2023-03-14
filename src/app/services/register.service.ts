@@ -29,25 +29,26 @@ export class RegisterService {
       });
   }
 
-  async postEmailCheckExists(email: Email): Promise<boolean> {
+  async postEmailCheckExists(email: Email): Promise<string> {
     return await axios
       .post('http://localhost:8080/api/email', JSON.stringify(email))
       .then((response) => {
-        return Promise.resolve(false);
+        return Promise.resolve("success");
       })
       .catch(async (error) => {
-        return Promise.resolve(true);
+        console.log(error);
+        return Promise.resolve(error.response.status);
       });
   }
 
-  async postUsernameCheckExists(username: Username): Promise<boolean> {
+  async postUsernameCheckExists(username: Username): Promise<string> {
     return await axios
       .post('http://localhost:8080/api/username', JSON.stringify(username))
       .then((response) => {
-        return Promise.resolve(false);
+        return Promise.resolve("success");
       })
       .catch(async (error) => {
-        return Promise.resolve(true);
+        return Promise.resolve(error.response.status);
       });
   }
 }

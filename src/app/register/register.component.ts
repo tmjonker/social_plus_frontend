@@ -30,8 +30,8 @@ export class RegisterComponent implements AfterViewChecked {
   emailObject!: Email;
   usernameObject!: Username;
 
-  emailExists: boolean = false;
-  usernameExists: boolean = false;
+  emailExists: string = "success";
+  usernameExists: string = "success";
 
   constructor(
     private validatorService: InputValidatorService,
@@ -137,15 +137,20 @@ export class RegisterComponent implements AfterViewChecked {
     if (this.testPasswords() && this.testEmail() && this.testUsername()) {
       await this.registerService
         .postEmailCheckExists(this.emailObject)
-        .then((boo) => {
-          this.emailExists = boo;
+        .then((value) => {
+          console.log(value);
+          this.emailExists = value;
+        }).catch((error) => {
+          this.emailExists = "error";
         });
 
       await this.registerService
         .postUsernameCheckExists(this.usernameObject)
-        .then((boo) => {
-          this.usernameExists = boo;
-        });
+        .then((value) => {
+          this.usernameExists = value;
+        }).catch((error) => {
+          this.emailExists = "error";
+        });;
     }
 
     if (!this.emailExists && !this.usernameExists) {
