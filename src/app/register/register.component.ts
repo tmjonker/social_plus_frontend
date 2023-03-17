@@ -3,14 +3,11 @@ import { Email } from './../interfaces/email';
 import { User } from './../interfaces/user';
 import { RegisterService } from '../services/register.service';
 import {
-  AfterContentChecked,
   Component,
-  OnInit,
   AfterViewChecked,
 } from '@angular/core';
 import { InputValidatorService } from '../services/input-validator.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -138,7 +135,6 @@ export class RegisterComponent implements AfterViewChecked {
       await this.registerService
         .postEmailCheckExists(this.emailObject)
         .then((value) => {
-          console.log(value);
           this.emailExists = value;
         }).catch((error) => {
           this.emailExists = "error";
@@ -153,7 +149,7 @@ export class RegisterComponent implements AfterViewChecked {
         });;
     }
 
-    if (!this.emailExists && !this.usernameExists) {
+    if (this.emailExists === 'success' && this.usernameExists === 'success') {
       this.registerService.postRegistration(this.user);
       this.email = '';
       this.username = '';

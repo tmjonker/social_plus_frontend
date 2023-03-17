@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private router: Router) {
     this.user = localStorage.getItem("user");
     if (!this.userIsNull()) {
-      this.router.navigateByUrl("/member-home");
+      this.router.navigateByUrl("/(signedIn:member-home)");
     } else {
       this.router.navigateByUrl("/sign-in");
     }

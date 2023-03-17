@@ -22,7 +22,7 @@ export class SignInComponent implements OnInit {
 
   redirectIfLoggedIn() {
     if (localStorage.getItem("user")) {
-      this.router.navigateByUrl("/member-home");
+      this.router.navigateByUrl("/(signedIn:member-home)");
     }
   }
 

@@ -7,7 +7,19 @@ import { Component } from '@angular/core';
 })
 export class MemberHomeComponent {
 
+  user!: any;
+
   constructor() {
-    
+
+    this.loadUser();
+  }
+
+  loadUser(): boolean {
+    this.user = JSON.parse(localStorage.getItem("user")!);
+
+    if(this.user !== null)
+      return true;
+
+    return false;
   }
 }

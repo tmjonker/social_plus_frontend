@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { MemberHomeComponent } from './member-home/member-home.component';
 import { StickyFooterComponent } from './sticky-footer/sticky-footer.component';
 import { MainComponent } from './main/main.component';
+import { InboxComponent } from './inbox/inbox.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MainComponent } from './main/main.component';
     RegisterComponent,
     MemberHomeComponent,
     StickyFooterComponent,
-    MainComponent
+    MainComponent,
+    InboxComponent
   ],
   imports: [
     BrowserModule,
