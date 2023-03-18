@@ -17,6 +17,7 @@ export class InboxComponent {
   async loadMessagesReceived() {
     await this.inboxService.getMessagesReceived().then((success) => {
       this.messagesReceived = success as MessageReceived[];
+      console.log(this.messagesReceived);
     })
   }
 }

@@ -24,7 +24,9 @@
           >
             {{ message.fromUsername }}
           </th>
-          <td class="px-6 py-4"></td>
+          <td class="px-6 py-4">
+            {{message.dateCreated.substring(5, 7) + "/" + message.dateCreated.substring(8,10) + "/" + message.dateCreated.substring(0, 4)}}
+          </td>
           <td class="px-6 py-4">
             {{ message.subject }}
           </td>

@@ -1,3 +1,4 @@
+import { InboxService } from './../services/inbox.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -9,9 +10,10 @@ export class MemberHomeComponent {
 
   user!: any;
 
-  constructor() {
+  constructor(private inboxService: InboxService) {
 
     this.loadUser();
+    this.inboxService.setInboxCount();
   }
 
   loadUser(): boolean {

@@ -146,7 +146,7 @@
     <ul class="space-y-2">
       <li>
         <a
-          [routerLink]="[{outlets: {signedIn: ['member-home']} }]"
+          [routerLink]="[{ outlets: { signedIn: ['member-home'] } }]"
           routerLinkActive="active"
           class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
         >
@@ -170,7 +170,7 @@
       </li>
       <li>
         <a
-          [routerLink]="[{outlets: {signedIn: ['inbox']} }]"
+          [routerLink]="[{ outlets: { signedIn: ['inbox'] } }]"
           routerLinkActive="active"
           class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
         >
@@ -191,7 +191,8 @@
           <span class="flex-1 ml-3 whitespace-nowrap">Inbox</span>
           <span
             class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300"
-            >3</span
+            *ngIf="inboxService.count"
+            >{{ inboxService.count }}</span
           >
         </a>
       </li>
