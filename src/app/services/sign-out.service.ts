@@ -11,6 +11,7 @@ export class SignOutService {
   performSignOut() {
 
     localStorage.clear();
+    sessionStorage.clear();
 
     this.router.navigateByUrl('/sign-in');
   }

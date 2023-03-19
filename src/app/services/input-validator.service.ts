@@ -43,4 +43,16 @@ export class InputValidatorService {
 
     return regex.test(username);
   }
+
+  validateMatch(password1: string, password2: string): boolean {
+    if (
+      password1 === undefined ||
+      password2 === undefined ||
+      password1 === '' ||
+      password2 === ''
+    ) {
+      return false;
+    }
+    return password1 === password2;
+  }
 }

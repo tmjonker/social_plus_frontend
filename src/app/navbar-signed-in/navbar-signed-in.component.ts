@@ -1,4 +1,5 @@
-import { SavedUser } from '../interfaces/saved-user';
+import { UserGeneratorService } from './../services/user-generator.service';
+import { SavedUser } from './../interfaces/saved-user';
 import { SignOutService } from './../services/sign-out.service';
 import { InboxService } from './../services/inbox.service';
 import { Router } from '@angular/router';
@@ -12,69 +13,30 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './navbar-signed-in.component.html',
   styleUrls: ['./navbar-signed-in.component.css'],
 })
-export class NavbarSignedInComponent implements OnDestroy, OnInit {
+export class NavbarSignedInComponent implements OnInit {
   pages!: Pages;
   user!: SavedUser;
 
-  constructor(private router: Router, public inboxService: InboxService, private signOutService: SignOutService) {
-    this.pages = JSON.parse(sessionStorage.getItem('pages')!);
-
-    if (this.pages === null) {
-      this.pages = {
-        signIn: true,
-        register: false,
-        about: false,
-      };
-    } else {
-      this.pages = {
-        signIn: this.pages.signIn,
-        register: this.pages.register,
-        about: this.pages.about,
-      };
-    }
-  }
+  constructor(
+    private router: Router,
+    public inboxService: InboxService,
+    private signOutService: SignOutService,
+    private userGenerator: UserGeneratorService
+  ) {}
 
   ngOnInit(): void {
-    window.onbeforeunload = () => this.ngOnDestroy();
-
     document.getElementById('pi-link')!.onclick = (e) => e.preventDefault();
     document.getElementById('pw-link')!.onclick = (e) => e.preventDefault();
-  }
-
-  ngOnDestroy(): void {
-    sessionStorage.setItem('pages', JSON.stringify(this.pages));
-  }
-
-  toggleRegister() {
-    this.pages = {
-      signIn: false,
-      register: true,
-      about: false,
-    };
-  }
-
-  toggleAbout() {
-    this.pages = {
-      signIn: false,
-      register: false,
-      about: true,
-    };
-  }
-
-  toggleSignIn() {
-    this.pages = {
-      signIn: true,
-      register: false,
-      about: false,
-    };
   }
 
   loadUser(): boolean {
     this.user = JSON.parse(localStorage.getItem('user')!);
 
     if (this.user !== null) {
+      console.log(this.user);
       return true;
     }
+    this.user = this.userGenerator.returnEmptySavedUser();
     return false;
   }
 
@@ -85,7 +47,6 @@ export class NavbarSignedInComponent implements OnDestroy, OnInit {
   handleUpdateSubmit() {}
 
   async getInboxCount() {
-
     return await this.inboxService
       .getMessagesReceived()
       .then((success) => {

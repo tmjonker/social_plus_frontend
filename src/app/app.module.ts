@@ -16,6 +16,8 @@ import { MemberHomeComponent } from './member-home/member-home.component';
 import { StickyFooterComponent } from './sticky-footer/sticky-footer.component';
 import { MainComponent } from './main/main.component';
 import { InboxComponent } from './inbox/inbox.component';
+import { AlertComponent } from './alert/alert.component';
+import { PwAlertComponent } from './pw-alert/pw-alert.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { InboxComponent } from './inbox/inbox.component';
     MemberHomeComponent,
     StickyFooterComponent,
     MainComponent,
-    InboxComponent
+    InboxComponent,
+    AlertComponent,
+    PwAlertComponent
   ],
   imports: [
     BrowserModule,

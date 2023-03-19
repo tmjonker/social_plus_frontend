@@ -22,7 +22,7 @@ export class RegisterService {
         console.log(response);
         localStorage.setItem('token', JSON.stringify(response.data.token));
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        this.router.navigateByUrl('/member-home');
+        this.router.navigateByUrl("/(signedIn:member-home)");
       })
       .catch((error) => {
         console.log(error.response.data);

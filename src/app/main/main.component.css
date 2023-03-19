@@ -11,6 +11,10 @@
     background-size: contain;
   }
 
+  .profile-image {
+    width: 140px;
+  }
+
 .opaque {
     opacity: 90%;
 }

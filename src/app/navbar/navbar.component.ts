@@ -10,9 +10,9 @@ export class NavbarComponent implements OnDestroy, OnInit {
   pages!: Pages;
 
   constructor() {
-    this.pages = JSON.parse(sessionStorage.getItem('pages')!);
+    // this.pages = JSON.parse(sessionStorage.getItem('pages')!);
 
-    if (this.pages === null) {
+    if (this.pages === undefined) {
       this.pages = {
         signIn: true,
         register: false,
@@ -30,7 +30,7 @@ export class NavbarComponent implements OnDestroy, OnInit {
     window.onbeforeunload = () => this.ngOnDestroy();
   }
   ngOnDestroy(): void {
-    sessionStorage.setItem('pages', JSON.stringify(this.pages));
+    // sessionStorage.setItem('pages', JSON.stringify(this.pages));
   }
 
   toggleRegister() {

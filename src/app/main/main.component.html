@@ -3,8 +3,16 @@
 >
   <p class="text-2xl text-black dark:text-gray-500 mr-10">
     <img
-      class="rounded-full border border-solid border-4 border-black"
-      src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+      class="profile-image rounded-full"
+      [ngClass]="{
+        'border border-solid border-4 border-black : user.imgPath':
+          user.imgPath
+      }"
+      src="{{
+        user.imgPath
+          ? user.imgPath
+          : '../../assets/images/profile-placeholder.png'
+      }}"
       alt="profile picture"
     />
   </p>

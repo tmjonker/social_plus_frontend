@@ -30,7 +30,7 @@
           <img
             src="../../assets/images/logo.png"
             class="h-8 mr-3"
-            alt="FlowBite Logo"
+            alt="Social+ Logo"
           />
           <span
             class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"
@@ -69,6 +69,7 @@
               />
             </div>
             <button
+              [hidden]="loadUser()"
               type="button"
               class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
               aria-expanded="false"
@@ -76,8 +77,12 @@
             >
               <span class="sr-only">Open user menu</span>
               <img
-                class="w-8 h-8 rounded-full"
-                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                class="w-8 h-8 rounded-full bg-gray-600"
+                src="{{
+                  user.imgPath
+                    ? user.imgPath
+                    : '../../assets/images/profile-placeholder.png'
+                }}"
                 alt="user photo"
               />
             </button>
@@ -196,8 +201,15 @@
         <ul id="inbox-dropdown" class="hidden py-2 space-y-2">
           <li>
             <a
-            [routerLink]="[{ outlets: { signedIn: ['inbox'] } }]"
-            routerLinkActive="active"
+              href="#"
+              class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              >Create New Message</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="[{ outlets: { signedIn: ['inbox'] } }]"
+              routerLinkActive="active"
               class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >Inbox
               <span
@@ -211,7 +223,7 @@
             <a
               href="#"
               class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-              >Create New Message</a
+              >Sent Messages</a
             >
           </li>
         </ul>

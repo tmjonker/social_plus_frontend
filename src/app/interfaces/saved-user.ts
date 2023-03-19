@@ -1,8 +1,8 @@
 export interface SavedUser {
 
-    email: string;
-    username: string;
-    firstName: string;
-    lastName: string;
-    imgPath: string;
+    email: string | undefined;
+    username: string | undefined;
+    firstName: string | undefined;
+    lastName: string | undefined;
+    imgPath: string | undefined;
 }

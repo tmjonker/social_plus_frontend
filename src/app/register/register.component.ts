@@ -30,6 +30,10 @@ export class RegisterComponent implements AfterViewChecked {
   emailExists: string = "success";
   usernameExists: string = "success";
 
+  usernameMessage: string = "Invalid username format, please try again!";
+  emailMessage: string = "Please make sure your email address is valid, and then try again.";
+  genericMessage: string = "There was an issue with your request.  Please try again!";
+
   constructor(
     private validatorService: InputValidatorService,
     private registerService: RegisterService,
@@ -62,44 +66,11 @@ export class RegisterComponent implements AfterViewChecked {
       return (
         this.validatorService.validateTotalPassword(this.password1) &&
         this.validatorService.validateTotalPassword(this.password2) &&
-        this.testMatch()
+        this.validatorService.validateMatch(this.password1, this.password2)
       );
     }
 
     return false;
-  }
-
-  testLength(): boolean {
-    if (this.password1 === undefined) {
-      return false;
-    }
-    return this.validatorService.validatePasswordLength(this.password1);
-  }
-
-  testUpper(): boolean {
-    if (this.password1 === undefined) {
-      return false;
-    }
-    return this.validatorService.validateUpperCase(this.password1);
-  }
-
-  testLower(): boolean {
-    if (this.password1 === undefined) {
-      return false;
-    }
-    return this.validatorService.validateLowerCase(this.password1);
-  }
-
-  testMatch(): boolean {
-    if (
-      this.password1 === undefined ||
-      this.password2 === undefined ||
-      this.password1 === '' ||
-      this.password2 === ''
-    ) {
-      return false;
-    }
-    return this.password1 === this.password2;
   }
 
   testUsername(): boolean {
