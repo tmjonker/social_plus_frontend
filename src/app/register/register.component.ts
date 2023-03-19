@@ -30,8 +30,10 @@ export class RegisterComponent implements AfterViewChecked {
   emailExists: string = "success";
   usernameExists: string = "success";
 
-  usernameMessage: string = "Invalid username format, please try again!";
-  emailMessage: string = "Please make sure your email address is valid, and then try again.";
+  usernameInvalidMessage: string = "Invalid username format, please try again!";
+  emailInvalidMessage: string = "Please make sure your email address is valid, and then try again.";
+  usernameExistsMessage: string = "An account with that username already exists.";
+  emailExistsMessage: string = "An account with that email address already exists.";
   genericMessage: string = "There was an issue with your request.  Please try again!";
 
   constructor(
