@@ -1,3 +1,4 @@
+import { SavedUser } from '../interfaces/saved-user';
 import { InboxService } from './../services/inbox.service';
 import { Component } from '@angular/core';
 
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class MemberHomeComponent {
 
-  user!: any;
+  user!: SavedUser;
 
   constructor(private inboxService: InboxService) {
 

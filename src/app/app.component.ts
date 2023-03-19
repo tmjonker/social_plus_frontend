@@ -1,3 +1,4 @@
+import { SavedUser } from './interfaces/saved-user';
 import { Router } from '@angular/router';
 import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
 
@@ -8,10 +9,10 @@ import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/cor
 })
 export class AppComponent {
 
-  user: any;
+  user: SavedUser;
 
   constructor(private router: Router) {
-    this.user = localStorage.getItem("user");
+    this.user = JSON.parse(localStorage.getItem("user")!);
     if (!this.userIsNull()) {
       this.router.navigateByUrl("/(signedIn:member-home)");
     } else {
@@ -21,7 +22,7 @@ export class AppComponent {
 
   userIsNull():boolean {
 
-    this.user = localStorage.getItem("user");
+    this.user = JSON.parse(localStorage.getItem("user")!);
     
     return this.user === undefined || this.user === null;
   }

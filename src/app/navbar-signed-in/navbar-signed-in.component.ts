@@ -1,3 +1,4 @@
+import { SavedUser } from '../interfaces/saved-user';
 import { SignOutService } from './../services/sign-out.service';
 import { InboxService } from './../services/inbox.service';
 import { Router } from '@angular/router';
@@ -13,7 +14,7 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class NavbarSignedInComponent implements OnDestroy, OnInit {
   pages!: Pages;
-  user!: any;
+  user!: SavedUser;
 
   constructor(private router: Router, public inboxService: InboxService, private signOutService: SignOutService) {
     this.pages = JSON.parse(sessionStorage.getItem('pages')!);

@@ -1,3 +1,4 @@
+import { SavedUser } from '../interfaces/saved-user';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -7,5 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 export class MainComponent {
 
-  @Input() user!: any;
+  @Input() user!: SavedUser;
 }
