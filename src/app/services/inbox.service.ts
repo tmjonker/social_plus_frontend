@@ -1,3 +1,4 @@
+import { SignOutService } from './sign-out.service';
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { environment } from 'src/environments/environment';
@@ -8,7 +9,7 @@ import { MessageReceived } from '../interfaces/message-received';
 })
 export class InboxService {
 
-  constructor() {
+  constructor(private signOutService: SignOutService) {
     axios.defaults.headers.post['Content-Type'] = 'application/json';
     axios.defaults.headers.common['SocialPlus'] = environment.apiKey;
    }
@@ -32,8 +33,8 @@ export class InboxService {
       .then((response) => {
         return Promise.resolve(response.data);
       }).catch((error) => {
-        console.log(error);
-        return Promise.reject([]);
+        this.signOutService.performSignOut();
+        return;
       });
     }
 

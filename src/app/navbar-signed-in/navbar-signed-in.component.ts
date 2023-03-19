@@ -1,3 +1,4 @@
+import { SignOutService } from './../services/sign-out.service';
 import { InboxService } from './../services/inbox.service';
 import { Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -14,7 +15,7 @@ export class NavbarSignedInComponent implements OnDestroy, OnInit {
   pages!: Pages;
   user!: any;
 
-  constructor(private router: Router, public inboxService: InboxService) {
+  constructor(private router: Router, public inboxService: InboxService, private signOutService: SignOutService) {
     this.pages = JSON.parse(sessionStorage.getItem('pages')!);
 
     if (this.pages === null) {
@@ -77,9 +78,7 @@ export class NavbarSignedInComponent implements OnDestroy, OnInit {
   }
 
   handleSignOut() {
-    localStorage.clear();
-
-    this.router.navigateByUrl('/sign-in');
+    this.signOutService.performSignOut();
   }
 
   handleUpdateSubmit() {}
@@ -92,7 +91,7 @@ export class NavbarSignedInComponent implements OnDestroy, OnInit {
         this.inboxService.count = success.length;
       })
       .catch((error) => {
-        console.log(error);
+        this.handleSignOut();
       });
   }
 }
