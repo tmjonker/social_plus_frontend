@@ -6,4 +6,5 @@ export interface MessageReceived {
     body: string;
     dateCreated: string;
     lastUpdated: string;
+    hasBeenRead: boolean;
 }
