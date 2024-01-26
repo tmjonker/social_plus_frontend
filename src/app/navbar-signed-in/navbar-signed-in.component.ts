@@ -7,6 +7,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Pages } from '../interfaces/pages';
 import { Dropdown } from 'flowbite';
 import { Observable, Subscription } from 'rxjs';
+import { UpdateService } from '../services/update.service';
 
 @Component({
   selector: 'app-navbar-signed-in',
@@ -16,12 +17,15 @@ import { Observable, Subscription } from 'rxjs';
 export class NavbarSignedInComponent implements OnInit {
   pages!: Pages;
   user!: SavedUser;
+  firstName!: string;
+  lastName!: string;
 
   constructor(
     private router: Router,
     public inboxService: InboxService,
     private signOutService: SignOutService,
-    private userGenerator: UserGeneratorService
+    private userGenerator: UserGeneratorService,
+    private updateService: UpdateService
   ) {}
 
   ngOnInit(): void {
