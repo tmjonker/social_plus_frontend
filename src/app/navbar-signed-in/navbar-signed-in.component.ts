@@ -43,7 +43,7 @@ export class NavbarSignedInComponent implements OnInit {
   handleSignOut() {
     this.signOutService.performSignOut();
   }
-
+// NEXT
   handleUpdateSubmit() {}
 
   async getInboxCount() {
