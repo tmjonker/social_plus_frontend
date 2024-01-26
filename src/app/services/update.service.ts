@@ -16,6 +16,8 @@ export class UpdateService {
   updateUserInformation(firstName: string, lastName: string) {
     this.userUpdates.firstName = firstName;
     this.userUpdates.lastName = lastName;
+
+    this.postUpdates();
   }
 
   postUpdates() {

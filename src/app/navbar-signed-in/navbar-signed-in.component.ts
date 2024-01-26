@@ -48,7 +48,9 @@ export class NavbarSignedInComponent implements OnInit {
     this.signOutService.performSignOut();
   }
 // NEXT
-  handleUpdateSubmit() {}
+  handleUpdateSubmit() {
+    this.updateService.updateUserInformation(this.firstName, this.lastName);
+  }
 
   async getInboxCount() {
     return await this.inboxService
