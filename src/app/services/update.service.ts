@@ -13,19 +13,27 @@ export class UpdateService {
 
   constructor(private router: Router) { }
 
-  updateUserInformation(firstName: string, lastName: string) {
-    this.userUpdates.firstName = firstName;
-    this.userUpdates.lastName = lastName;
+  updateUserInformation(un: string, fn: string, ln: string) {
+    console.log(fn);
+    this.userUpdates = {
+      username: un,
+      firstName: fn,
+      lastName: ln,
+      image: ''
+    }
 
     this.postUpdates();
   }
 
   postUpdates() {
     axios
-    .post('http://localhost:8080/api/update', JSON.stringify(this.userUpdates))
+    .post('http://localhost:8080/api/update', JSON.stringify(this.userUpdates), {
+      headers: {
+        'Authorization': JSON.parse(localStorage.getItem("token")!).token
+      }
+    })
     .then((response) => {
       console.log(response);
-      localStorage.setItem('token', JSON.stringify(response.data.token));
       localStorage.setItem('user', JSON.stringify(response.data.user));
       this.router.navigateByUrl("/(signedIn:member-home)");
     })

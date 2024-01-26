@@ -17,7 +17,7 @@ import { UpdateService } from '../services/update.service';
 export class NavbarSignedInComponent implements OnInit {
   pages!: Pages;
   user!: SavedUser;
-  firstName!: string;
+  firstName!: string
   lastName!: string;
 
   constructor(
@@ -35,6 +35,8 @@ export class NavbarSignedInComponent implements OnInit {
 
   loadUser(): boolean {
     this.user = JSON.parse(localStorage.getItem('user')!);
+    this.firstName = this.user.firstName!;
+    this.lastName = this.user.lastName!;
 
     if (this.user !== null) {
       console.log(this.user);
@@ -49,7 +51,8 @@ export class NavbarSignedInComponent implements OnInit {
   }
 // NEXT
   handleUpdateSubmit() {
-    this.updateService.updateUserInformation(this.firstName, this.lastName);
+    console.log(this.firstName);
+    this.updateService.updateUserInformation(this.user.username === undefined ? '' : this.user.username, this.firstName, this.lastName);
   }
 
   async getInboxCount() {
