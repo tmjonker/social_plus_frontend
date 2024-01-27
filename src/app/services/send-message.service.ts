@@ -1,44 +1,42 @@
 import { Injectable } from '@angular/core';
-import axios from 'axios';
-import { UserUpdates } from '../interfaces/user-updates';
 import { Router } from '@angular/router';
+import axios from 'axios';
+import { Message } from '../interfaces/message';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-// NEXT
-export class UpdateService {
+export class SendMessageService {
 
-  userUpdates!: UserUpdates;
+  message!: Message;
 
   constructor(private router: Router) {
     axios.defaults.headers.post['Content-Type'] = 'application/json';
     axios.defaults.headers.common['SocialPlus'] = environment.apiKey;
    }
 
-  updateUserInformation(un: string, fn: string, ln: string) {
-    console.log(fn);
-    this.userUpdates = {
-      username: un,
-      firstName: fn,
-      lastName: ln,
-      image: ''
+  sendMessage(fr: string, recip: string, sub: string, bdy: string) {
+    this.message = {
+      from: fr,
+      to: recip,
+      subject: sub,
+      body: bdy
     }
 
-    this.postUpdates();
+    console.log(this.message.from + " " + this.message.to);
+    this.postMessage();
   }
 
-  postUpdates() {
+  postMessage() {
     axios
-    .post('http://localhost:8080/update', JSON.stringify(this.userUpdates), {
+    .post('http://localhost:8080/direct-message', JSON.stringify(this.message), {
       headers: {
         'Authorization': JSON.parse(localStorage.getItem("token")!).token
       }
     })
     .then((response) => {
       console.log(response);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
       this.router.navigateByUrl("/(signedIn:member-home)");
     })
     .catch((error) => {

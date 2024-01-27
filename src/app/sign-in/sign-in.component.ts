@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-in.component.css'],
 })
 export class SignInComponent implements OnInit {
-  email!: string;
+  username!: string;
   password!: string;
   credentials!: Credentials;
 
@@ -28,7 +28,7 @@ export class SignInComponent implements OnInit {
 
   handleSubmit() {
     this.credentials = {
-      email: this.email.trim().toLowerCase(),
+      username: this.username.trim().toLowerCase(),
       password: this.password,
     };
 

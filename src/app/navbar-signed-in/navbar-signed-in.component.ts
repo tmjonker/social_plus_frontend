@@ -8,6 +8,7 @@ import { Pages } from '../interfaces/pages';
 import { Dropdown } from 'flowbite';
 import { Observable, Subscription } from 'rxjs';
 import { UpdateService } from '../services/update.service';
+import { SendMessageService } from '../services/send-message.service';
 
 @Component({
   selector: 'app-navbar-signed-in',
@@ -17,15 +18,19 @@ import { UpdateService } from '../services/update.service';
 export class NavbarSignedInComponent implements OnInit {
   pages!: Pages;
   user!: SavedUser;
-  firstName!: string
-  lastName!: string;
+  firstName: string = JSON.parse(localStorage.getItem('user')!).firstName;
+  lastName: string = JSON.parse(localStorage.getItem('user')!).firstName;
+  recipient!: string;
+  subject!: string;
+  body!: string;
 
   constructor(
     private router: Router,
     public inboxService: InboxService,
     private signOutService: SignOutService,
     private userGenerator: UserGeneratorService,
-    private updateService: UpdateService
+    private updateService: UpdateService,
+    private sendMessageService: SendMessageService
   ) {}
 
   ngOnInit(): void {
@@ -35,8 +40,6 @@ export class NavbarSignedInComponent implements OnInit {
 
   loadUser(): boolean {
     this.user = JSON.parse(localStorage.getItem('user')!);
-    this.firstName = this.user.firstName!;
-    this.lastName = this.user.lastName!;
 
     if (this.user !== null) {
       console.log(this.user);
@@ -49,10 +52,38 @@ export class NavbarSignedInComponent implements OnInit {
   handleSignOut() {
     this.signOutService.performSignOut();
   }
-// NEXT
-  handleUpdateSubmit() {
+  // NEXT
+  handleUpdateInfoSubmit() {
     console.log(this.firstName);
-    this.updateService.updateUserInformation(this.user.username === undefined ? '' : this.user.username, this.firstName, this.lastName);
+    this.updateService.updateUserInformation(
+      this.user.username === undefined ? '' : this.user.username,
+      this.firstName,
+      this.lastName
+    );
+  }
+
+  handleUpdatePasswordSubmit() {
+    console.log(this.firstName);
+    this.updateService.updateUserInformation(
+      this.user.username === undefined ? '' : this.user.username,
+      this.firstName,
+      this.lastName
+    );
+  }
+
+  handleSendMessageSubmit() {
+    console.log(this.firstName);
+    this.sendMessageService.sendMessage(
+      this.user.username === undefined ? '' : this.user.username,
+      this.recipient,
+      this.subject,
+      this.body
+    );
+  }
+
+  setNameFields() {
+    this.firstName = this.user.firstName!;
+    this.lastName = this.user.lastName!;
   }
 
   async getInboxCount() {
