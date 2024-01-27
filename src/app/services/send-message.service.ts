@@ -20,7 +20,7 @@ export class SendMessageService {
     this.message = {
       from: fr,
       to: recip,
-      subject: sub,
+      subject: sub.length > 0 ? sub : "[No Subject]",
       body: bdy
     }
 

@@ -20,9 +20,12 @@ export class NavbarSignedInComponent implements OnInit, AfterViewInit {
   user!: SavedUser;
   firstName!: string;
   lastName!: string;
-  recipient!: string;
+  recipient: string = '';
   subject!: string;
-  body!: string;
+  body: string = '';
+
+  messageTooLongWarning: string = "Your message exceed the set limit of 250 characters!";
+  noRecipientEnteredWarning: string = "You must enter a recipient for your message!";
 
   constructor(
     private router: Router,
@@ -93,6 +96,26 @@ export class NavbarSignedInComponent implements OnInit, AfterViewInit {
     this.lastName = this.user.lastName!;
   }
 
+  testBody(): boolean {
+    let counter = 0;
+
+    for (let i = 0; i < this.body.length; i++) {
+      counter++;
+
+      if (counter > 250) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  testRecipient(): boolean {
+    if (this.recipient.length < 1) {
+      return false;
+    }
+    return true;
+  }
+
   async getInboxCount() {
     return await this.inboxService
       .getMessagesReceived()
@@ -102,5 +125,15 @@ export class NavbarSignedInComponent implements OnInit, AfterViewInit {
       .catch((error) => {
         this.handleSignOut();
       });
+  }
+
+  testDataComplete(): boolean {
+    if (
+      this.recipient !== '' &&
+      this.recipient !== undefined
+    ) {
+      return this.testBody();
+    }
+    return false;
   }
 }
