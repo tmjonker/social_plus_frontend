@@ -1,6 +1,7 @@
 export interface MessageReceived {
     
     id: number;
+    toUsername: string;
     fromUsername: string;
     subject: string;
     body: string;
