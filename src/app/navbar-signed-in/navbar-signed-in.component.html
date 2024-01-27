@@ -201,6 +201,7 @@
         <ul id="inbox-dropdown" class="hidden py-2 space-y-2">
           <li>
             <a
+              id="dm-link"
               href=""
               onclick="return false"
               data-modal-target="dm-modal"
@@ -562,7 +563,7 @@
               id="recipient"
               name="recipient"
               [(ngModel)]="recipient"
-              [ngModelOptions]="{standalone:true}"
+              [ngModelOptions]="{ standalone: true }"
               placeholder="Recipient"
               class="bg-gray-100 border-solid border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:outline-none focus:border-blue-500 block w-full p-2.5"
               required
@@ -579,7 +580,7 @@
               id="subject"
               name="subject"
               [(ngModel)]="subject"
-              [ngModelOptions]="{standalone:true}"
+              [ngModelOptions]="{ standalone: true }"
               placeholder="Subject"
               class="bg-gray-100 border-solid border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:outline-none focus:border-blue-500 block w-full p-2.5"
               required
@@ -595,7 +596,7 @@
               id="body"
               rows="4"
               [(ngModel)]="body"
-              [ngModelOptions]="{standalone:true}"
+              [ngModelOptions]="{ standalone: true }"
               class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Write your message here..."
             ></textarea>

@@ -3,7 +3,7 @@ import { SavedUser } from './../interfaces/saved-user';
 import { SignOutService } from './../services/sign-out.service';
 import { InboxService } from './../services/inbox.service';
 import { Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Pages } from '../interfaces/pages';
 import { Dropdown } from 'flowbite';
 import { Observable, Subscription } from 'rxjs';
@@ -15,11 +15,11 @@ import { SendMessageService } from '../services/send-message.service';
   templateUrl: './navbar-signed-in.component.html',
   styleUrls: ['./navbar-signed-in.component.css'],
 })
-export class NavbarSignedInComponent implements OnInit {
+export class NavbarSignedInComponent implements OnInit, AfterViewInit {
   pages!: Pages;
   user!: SavedUser;
-  firstName: string = JSON.parse(localStorage.getItem('user')!).firstName;
-  lastName: string = JSON.parse(localStorage.getItem('user')!).firstName;
+  firstName!: string;
+  lastName!: string;
   recipient!: string;
   subject!: string;
   body!: string;
@@ -36,6 +36,13 @@ export class NavbarSignedInComponent implements OnInit {
   ngOnInit(): void {
     document.getElementById('pi-link')!.onclick = (e) => e.preventDefault();
     document.getElementById('pw-link')!.onclick = (e) => e.preventDefault();
+    document.getElementById('dm-link')!.onclick = (e) => e.preventDefault();
+  }
+
+  ngAfterViewInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user')!);
+    this.firstName = this.user !== undefined ? this.user.firstName! : '';
+    this.lastName= this.user !== undefined ? this.user.lastName! : '';
   }
 
   loadUser(): boolean {
