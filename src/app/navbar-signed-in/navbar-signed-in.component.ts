@@ -3,7 +3,7 @@ import { SavedUser } from './../interfaces/saved-user';
 import { SignOutService } from './../services/sign-out.service';
 import { InboxService } from './../services/inbox.service';
 import { Router } from '@angular/router';
-import { AfterViewChecked, AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Pages } from '../interfaces/pages';
 import { Dropdown } from 'flowbite';
 import { Observable, Subscription } from 'rxjs';
@@ -13,9 +13,9 @@ import { SendMessageService } from '../services/send-message.service';
 @Component({
   selector: 'app-navbar-signed-in',
   templateUrl: './navbar-signed-in.component.html',
-  styleUrls: ['./navbar-signed-in.component.css'],
+  styleUrls: ['./navbar-signed-in.component.css']
 })
-export class NavbarSignedInComponent implements OnInit, AfterViewInit {
+export class NavbarSignedInComponent implements OnInit {
   pages!: Pages;
   user!: SavedUser;
   firstName!: string;
@@ -40,12 +40,6 @@ export class NavbarSignedInComponent implements OnInit, AfterViewInit {
     document.getElementById('pi-link')!.onclick = (e) => e.preventDefault();
     document.getElementById('pw-link')!.onclick = (e) => e.preventDefault();
     document.getElementById('dm-link')!.onclick = (e) => e.preventDefault();
-  }
-
-  ngAfterViewInit(): void {
-    this.user = JSON.parse(localStorage.getItem('user')!);
-    this.firstName = this.user !== undefined ? this.user.firstName! : '';
-    this.lastName= this.user !== undefined ? this.user.lastName! : '';
   }
 
   loadUser(): boolean {
@@ -125,6 +119,12 @@ export class NavbarSignedInComponent implements OnInit, AfterViewInit {
       .catch((error) => {
         this.handleSignOut();
       });
+  }
+
+  populateUserName() {
+    this.user = JSON.parse(localStorage.getItem('user')!);
+    this.firstName = this.user !== undefined && this.user !== null ? this.user.firstName! : '';
+    this.lastName= this.user !== undefined && this.user !== null ? this.user.lastName! : '';
   }
 
   testDataComplete(): boolean {
