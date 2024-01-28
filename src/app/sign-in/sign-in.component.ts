@@ -12,12 +12,16 @@ export class SignInComponent implements OnInit {
   username!: string;
   password!: string;
   credentials!: Credentials;
+  
+  exception!: string;
+  errorSignInMessage: string = "Incorrect Password."
 
   constructor(private signInService: SignInService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.redirectIfLoggedIn();
+    localStorage.removeItem("status");
   }
 
   redirectIfLoggedIn() {
@@ -26,12 +30,23 @@ export class SignInComponent implements OnInit {
     }
   }
 
-  handleSubmit() {
+  async handleSubmit() {
     this.credentials = {
       username: this.username.trim().toLowerCase(),
       password: this.password,
     };
 
-    this.signInService.postSignIn(this.credentials);
+    await this.signInService.postSignIn(this.credentials)
+    .then((data) => {
+      this.exception = data;
+      localStorage.setItem("status", data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  checkForSignInError(): boolean {
+    return localStorage.getItem("status") === '400';
   }
 }

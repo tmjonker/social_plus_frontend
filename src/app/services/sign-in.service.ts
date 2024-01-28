@@ -15,21 +15,21 @@ export class SignInService {
     axios.defaults.headers.common['SocialPlus'] = environment.apiKey;
   }
 
-  postSignIn(credentials: Credentials) {
+  async postSignIn(credentials: Credentials): Promise<string> {
 
-    axios
+    return await axios
       .post('http://localhost:8080/api/authenticate', JSON.stringify(credentials))
       .then((response) => {
-        console.log(response)
+        console.log(response);
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("user", JSON.stringify(response.data.user));
         this.router.navigateByUrl("/(signedIn:member-home)");
+        return Promise.resolve("success");
       })
       .catch((error) => {
         console.log(error.response.data);
-        this.router.navigateByUrl("/sign-in");
+        this.router.navigate(["/sign-in", {status: JSON.stringify("error.response.data")}]);
+        return Promise.resolve(error.response.status)
       });
-
-      return false;
   }
 }

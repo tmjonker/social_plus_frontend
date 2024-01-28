@@ -118,7 +118,7 @@ export class RegisterComponent implements AfterViewChecked {
         .then((value) => {
           this.usernameExists = value;
         }).catch((error) => {
-          this.emailExists = "error";
+          this.usernameExists = "error";
         });;
     }
 

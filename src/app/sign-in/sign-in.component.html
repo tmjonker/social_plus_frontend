@@ -45,6 +45,7 @@
       >
         Submit
       </button>
+      <app-alert *ngIf="checkForSignInError()" [message]="errorSignInMessage"></app-alert>
     </form>
   </div>
 </div>
