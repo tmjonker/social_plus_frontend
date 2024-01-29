@@ -9,6 +9,7 @@ import { Dropdown } from 'flowbite';
 import { Observable, Subscription } from 'rxjs';
 import { UpdateService } from '../services/update.service';
 import { SendMessageService } from '../services/send-message.service';
+import { InputValidatorService } from '../services/input-validator.service';
 
 @Component({
   selector: 'app-navbar-signed-in',
@@ -23,6 +24,8 @@ export class NavbarSignedInComponent implements OnInit {
   recipient: string = '';
   subject!: string;
   body: string = '';
+  password1: string = '';
+  password2: string = '';
 
   messageTooLongWarning: string = "Your message exceed the set limit of 250 characters!";
   noRecipientEnteredWarning: string = "You must enter a recipient for your message!";
@@ -33,7 +36,8 @@ export class NavbarSignedInComponent implements OnInit {
     private signOutService: SignOutService,
     private userGenerator: UserGeneratorService,
     private updateService: UpdateService,
-    private sendMessageService: SendMessageService
+    private sendMessageService: SendMessageService,
+    private validatorService: InputValidatorService
   ) {}
 
   ngOnInit(): void {
@@ -68,11 +72,9 @@ export class NavbarSignedInComponent implements OnInit {
 
   handleUpdatePasswordSubmit() {
     console.log(this.firstName);
-    this.updateService.updateUserInformation(
-      this.user.username === undefined ? '' : this.user.username,
-      this.firstName,
-      this.lastName
-    );
+    this.updateService.updatePassword(this.user.username!, this.password1);
+    this.password1 = '';
+    this.password2 = '';
   }
 
   handleSendMessageSubmit() {
@@ -127,7 +129,7 @@ export class NavbarSignedInComponent implements OnInit {
     this.lastName= this.user !== undefined && this.user !== null ? this.user.lastName! : '';
   }
 
-  testDataComplete(): boolean {
+  testMessageDataComplete(): boolean {
     if (
       this.recipient !== '' &&
       this.recipient !== undefined
@@ -135,5 +137,10 @@ export class NavbarSignedInComponent implements OnInit {
       return this.testBody();
     }
     return false;
+  }
+
+  testPasswordData(): boolean {
+
+    return this.validatorService.validatePasswords(this.password1, this.password2)!;
   }
 }

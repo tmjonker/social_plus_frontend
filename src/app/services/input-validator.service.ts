@@ -39,7 +39,9 @@ export class InputValidatorService {
   }
 
   validateUsername(username: string): boolean {
-    const regex = new RegExp(/^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/)
+    const regex = new RegExp(
+      /^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/
+    );
 
     return regex.test(username);
   }
@@ -54,5 +56,17 @@ export class InputValidatorService {
       return false;
     }
     return password1 === password2;
+  }
+
+  validatePasswords(password1: string, password2: string): boolean {
+    if (password1 !== null && password2 !== null) {
+      return (
+        this.validateTotalPassword(password1) &&
+        this.validateTotalPassword(password2) &&
+        this.validateMatch(password1, password2)
+      );
+    }
+
+    return false;
   }
 }
