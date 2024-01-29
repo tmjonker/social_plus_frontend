@@ -6,6 +6,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { AboutComponent } from './about/about.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SentBoxComponent } from './sent-box/sent-box.component';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
   { path: 'member-home', component: MemberHomeComponent, outlet: 'signedIn' },
   { path: 'inbox', component: InboxComponent, outlet: 'signedIn' },
+  { path: 'sentbox', component: SentBoxComponent, outlet: 'signedIn' },
 ];
 
 @NgModule({

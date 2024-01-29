@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { environment } from 'src/environments/environment';
 import { MessageReceived } from '../interfaces/message-received';
+import { MessageSent } from '../interfaces/message-sent';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +27,31 @@ export class InboxService {
     if (username !== undefined) {
       return await axios
         .get('http://localhost:8080/direct-message/' + username, {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem('token')!).token,
+          },
+        })
+        .then((response) => {
+          return Promise.resolve(response.data);
+        })
+        .catch((error) => {
+          this.signOutService.performSignOut();
+          return;
+        });
+    }
+
+    return Promise.reject([]);
+  }
+
+  async getMessagesSent(): Promise<MessageSent[]> {
+    let username;
+    if (localStorage.getItem('user') !== null) {
+      username = JSON.parse(localStorage.getItem('user')!).username;
+    }
+
+    if (username !== undefined) {
+      return await axios
+        .get('http://localhost:8080/direct-message/sent/' + username, {
           headers: {
             Authorization: JSON.parse(localStorage.getItem('token')!).token,
           },

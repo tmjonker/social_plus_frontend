@@ -18,6 +18,7 @@ import { MainComponent } from './main/main.component';
 import { InboxComponent } from './inbox/inbox.component';
 import { AlertComponent } from './alert/alert.component';
 import { PwAlertComponent } from './pw-alert/pw-alert.component';
+import { SentBoxComponent } from './sent-box/sent-box.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PwAlertComponent } from './pw-alert/pw-alert.component';
     MainComponent,
     InboxComponent,
     AlertComponent,
-    PwAlertComponent
+    PwAlertComponent,
+    SentBoxComponent
   ],
   imports: [
     BrowserModule,
